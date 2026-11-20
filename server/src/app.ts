@@ -22,9 +22,10 @@ export const createApp = (): Application => {
   app.use(express.urlencoded({ extended: true }));
   app.use(requestLogger);
 
-  // Health check endpoint (available at both root and /api)
+  // Health check and API routes (accessible directly and under /api)
   app.get('/health', getHealth);
   app.use('/api', apiRouter);
+  app.use(apiRouter);
 
   // 404 handler
   app.use((_req, res) => {
