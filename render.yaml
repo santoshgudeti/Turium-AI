@@ -7,7 +7,7 @@ services:
     name: turium-ai-backend
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build:server
+    buildCommand: npm install --include=dev && npm run build:server
     startCommand: npm start
     healthCheckPath: /health
     envVars:
@@ -35,7 +35,7 @@ services:
   # 2. Frontend Static Site (React / Vite on Global CDN)
   - type: static_site
     name: turium-ai-frontend
-    buildCommand: npm install && npm run build:client
+    buildCommand: npm install --include=dev && npm run build:client
     staticPublishPath: client/dist
     routes:
       - type: rewrite
